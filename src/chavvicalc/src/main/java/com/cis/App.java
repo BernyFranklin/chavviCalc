@@ -35,10 +35,7 @@ public class App {
             if (menuOption == 'q') {
                 quit = true;
             }   // End of quit
-            else {
-                continue;
-            }
-            
+
         }   // End of while
 
     }   // End main
@@ -77,7 +74,8 @@ public class App {
         userSelection = userSelection.toLowerCase();
         // Grab character
         input = userSelection.charAt(0);
-        
+
+        // Return char to main
         return input;
     }   // End getUserInput
 }   // End App
