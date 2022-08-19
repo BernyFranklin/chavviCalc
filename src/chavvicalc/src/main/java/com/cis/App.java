@@ -16,38 +16,31 @@ package com.cis;
 public class App {
     // Start main
     public static void main( String[] args ) {
+        // Local Variables
         double a = 0.0;         // Value for A
         double b = 0.0;         // Value for B
-        String userSelection = "";
-        char menuOption = ' ';
         boolean quit = false;   // Flag to end program
 
-        // Creat Scanner
-        Scanner readInput = new Scanner(System.in);
 
         while (!quit) {
+            // Local variables
+            char menuOption = ' ';  // Value for menu option
             // Display the menu
             displayMenu(a, b);
             // Prompt for userSelection
-            System.out.print("Please enter a selection: ");
-
-            // Read input from user
-            userSelection = readInput.next();
-            // Convert to lower
-            userSelection = userSelection.toLowerCase();
-            // Grab character
-            menuOption = userSelection.charAt(0);
+            menuOption = getUserInput();
 
             // Control Statement for menuOption
             // Quit
             if (menuOption == 'q') {
                 quit = true;
             }   // End of quit
-
+            else {
+                continue;
+            }
+            
         }   // End of while
 
-        // Close Scanner
-        readInput.close();
     }   // End main
 
     private static void displayMenu(double a, double b) {
@@ -68,4 +61,23 @@ public class App {
         System.out.println("----------------------------------------");
     }   // End displayMenu
 
+    // Get user input
+    private static char getUserInput() {
+        // Create Scanner
+        Scanner readInput = new Scanner(System.in);
+        // Create local variables
+        String userSelection = "";
+        char input = ' ';
+        // Prompt for user input
+        System.out.print("Please enter a selection: ");
+
+        // Read input from user
+        userSelection = readInput.next();
+        // Convert to lower
+        userSelection = userSelection.toLowerCase();
+        // Grab character
+        input = userSelection.charAt(0);
+        
+        return input;
+    }   // End getUserInput
 }   // End App
