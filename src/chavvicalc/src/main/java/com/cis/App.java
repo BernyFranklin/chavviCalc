@@ -26,21 +26,9 @@ public class App {
         Scanner readInput = new Scanner(System.in);
 
         while (!quit) {
-            // Print menu
-            System.out.println("----------------------------------------");
-            System.out.println("Chavvi Calc");
-            System.out.println("----------------------------------------");
-            System.out.printf("A = %.3f \tB = %.3f\n", a, b);
-            System.out.println("----------------------------------------");
-            System.out.printf("a\tEnter a value for A\n");
-            System.out.printf("b\tEnter a value for B\n");
-            System.out.printf("+\tAdd\n");
-            System.out.printf("-\tSubtract\n");
-            System.out.printf("/\tDivide\n");
-            System.out.printf("*\tMultiply\n");
-            System.out.printf("c\tClear\n");
-            System.out.printf("q\tQuit\n");
-            System.out.println("----------------------------------------");
+            // Display the menu
+            displayMenu(a, b);
+            // Prompt for userSelection
             System.out.print("Please enter a selection: ");
 
             // Read input from user
@@ -57,5 +45,27 @@ public class App {
             }   // End of quit
 
         }   // End of while
+
+        // Close Scanner
+        readInput.close();
     }   // End main
+
+    private static void displayMenu(double a, double b) {
+        // Print menu
+        System.out.println("----------------------------------------");
+        System.out.println("Chavvi Calc");
+        System.out.println("----------------------------------------");
+        System.out.printf("A = %.3f \tB = %.3f\n", a, b);
+        System.out.println("----------------------------------------");
+        System.out.printf("a\tEnter a value for A\n");
+        System.out.printf("b\tEnter a value for B\n");
+        System.out.printf("+\tAdd\n");
+        System.out.printf("-\tSubtract\n");
+        System.out.printf("/\tDivide\n");
+        System.out.printf("*\tMultiply\n");
+        System.out.printf("c\tClear\n");
+        System.out.printf("q\tQuit\n");
+        System.out.println("----------------------------------------");
+    }   // End displayMenu
+
 }   // End App
