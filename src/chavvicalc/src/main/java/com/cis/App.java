@@ -20,6 +20,8 @@ public class App {
         double a = 0.0;         // Value for A
         double b = 0.0;         // Value for B
         boolean quit = false;   // Flag to end program
+        // Create Scanner
+        Scanner readInput = new Scanner(System.in);
 
 
         while (!quit) {
@@ -30,7 +32,7 @@ public class App {
             displayMenu(a, b);
             // Prompt for userSelection
             while (!isValid) {
-                menuOption = getUserInput();
+                menuOption = getUserInput(readInput);
                 // Check if valid selecion
                 isValid = validInputCheck(menuOption);
             }
@@ -50,6 +52,7 @@ public class App {
 
         }   // End of while
 
+        readInput.close();
     }   // End main
 
     private static void displayMenu(double a, double b) {
@@ -71,9 +74,8 @@ public class App {
     }   // End displayMenu
 
     // Get user input
-    private static char getUserInput() {
-        // Create Scanner
-        Scanner readInput = new Scanner(System.in);
+    private static char getUserInput(Scanner readInput) {
+        
         // Create local variables
         String userSelection = "";
         char input = ' ';
