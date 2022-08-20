@@ -11,6 +11,7 @@ package com.cis;
 
  // Imports
  import java.util.Scanner;
+ import java.util.InputMismatchException;
 
 // Start App
 public class App {
@@ -36,25 +37,27 @@ public class App {
                 // Check if valid selecion
                 isValid = validInputCheck(menuOption);
             }
+            
             // Pass to different operations
-            // A
-            // B
+            switch (menuOption) {
+                case 'a':   // Set A
+                    a = setAorB(readInput, menuOption);
+                    break;
+                case 'q':
+                    quit = true;
+                    break;
+            }
             // Add
             // Subtract
             // Divide
             // Multiply
             // Clear
-            // Control Statement for menuOption
-            // Quit
-            if (menuOption == 'q') {
-                quit = true;
-            }   // End of quit
-
         }   // End of while
 
         readInput.close();
     }   // End main
 
+    // Print the menu
     private static void displayMenu(double a, double b) {
         // Print menu
         System.out.println("----------------------------------------");
@@ -103,4 +106,32 @@ public class App {
             return true;
         }
     }   // End of validInputCheck
+
+    // Set A or B
+    private static double setAorB(Scanner readInput, char menuOption) {
+        // Create local variable
+        boolean valid = false;
+        double value = 0.0;
+
+        while (!valid) {
+            // Create local variable for loop
+            value = 0.0;
+            // Prompt for user input
+            System.out.printf("Enter a value for %c: ", menuOption);
+            // Store input to value
+            try {
+                value = readInput.nextDouble();
+            }   // End of try
+            catch (InputMismatchException e) {
+                System.out.println("Value must be numeric, please try again");
+                readInput.nextLine();
+                continue;
+            }   // End of catch
+
+            // Set flag to true
+            valid = true;
+        }   // End of while
+
+        return value;
+    }   // End of setAorB
 }   // End App
