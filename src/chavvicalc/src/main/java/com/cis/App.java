@@ -191,7 +191,10 @@ public class App {
 
     // Display results
     private static void displayResults(float a, float b, float results, char menuOption) {
-        System.out.printf("\n%.3f %c %.3f = %.3f\n\n", a, menuOption, b, results);
+        System.out.printf("\n\n========================================\n\n");
+        System.out.printf("Displaying Results: \n\n");
+        System.out.printf("%.3f %c %.3f = %.3f\n", a, menuOption, b, results);
+        System.out.printf("========================================\n\n");
     }   // End of displayResults
 
 }   // End App
