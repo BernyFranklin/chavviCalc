@@ -157,10 +157,11 @@ public class App {
     // Execute some math
     private static void executeMath(char menuOption, float a, float b) {
         float results = 0.0f;
-
+        
+        System.out.println("You have entered executeMath()");
         switch (menuOption) {
             case '+':   // Add
-                results = a + b;
+                results = (float)(a + b);
                 break;
             case '-':   // Subtract
                 results = a - b;
@@ -179,12 +180,12 @@ public class App {
         }   // End of switch
         
         // Print results
-        displayResults(a, b, menuOption, results);
+        displayResults(a, b, results, menuOption);
     }   // End of executeMath
 
     // Display results
-    private static void displayResults(float a, float b, char menuOption, float results) {
-        System.out.printf("%c %c %c = $.3f", a, menuOption, b, results);
+    private static void displayResults(float a, float b, float results, char menuOption) {
+        System.out.printf("%.3f %c %.3f = %.3f", a, menuOption, b, results);
     }   // End of displayResults
 
 }   // End App
