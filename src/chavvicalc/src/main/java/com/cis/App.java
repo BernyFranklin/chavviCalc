@@ -18,8 +18,8 @@ public class App {
     // Start main
     public static void main( String[] args ) {
         // Local Variables
-        double a = 0.0;         // Value for A
-        double b = 0.0;         // Value for B
+        float a = 0.0f;         // Value for A
+        float b = 0.0f;         // Value for B
         boolean quit = false;   // Flag to end program
         // Create Scanner
         Scanner readInput = new Scanner(System.in);
@@ -42,6 +42,25 @@ public class App {
             switch (menuOption) {
                 case 'a':   // Set A
                     a = setAorB(readInput, menuOption);
+                    break;
+                case 'b':   // Set B
+                    b = setAorB(readInput, menuOption);
+                    break;
+                case '+':   // Addition
+                    executeMath(menuOption, a, b);
+                    break;
+                case '-':   // Subtraction
+                    executeMath(menuOption, a, b);
+                    break;
+                case '/':   // Division
+                    executeMath(menuOption, a, b);
+                    break;
+                case '*':   // Multiplication
+                    executeMath(menuOption, a, b);
+                    break;
+                case 'c':   // Clear A and B
+                    a = 0.0f;
+                    b = 0.0f;
                     break;
                 case 'q':
                     quit = true;
@@ -108,19 +127,19 @@ public class App {
     }   // End of validInputCheck
 
     // Set A or B
-    private static double setAorB(Scanner readInput, char menuOption) {
+    private static float setAorB(Scanner readInput, char menuOption) {
         // Create local variable
         boolean valid = false;
-        double value = 0.0;
+        float value = 0.0f;
 
         while (!valid) {
             // Create local variable for loop
-            value = 0.0;
+            value = 0.0f;
             // Prompt for user input
             System.out.printf("Enter a value for %c: ", menuOption);
             // Store input to value
             try {
-                value = readInput.nextDouble();
+                value = readInput.nextFloat();
             }   // End of try
             catch (InputMismatchException e) {
                 System.out.println("Value must be numeric, please try again");
@@ -134,4 +153,38 @@ public class App {
 
         return value;
     }   // End of setAorB
+
+    // Execute some math
+    private static void executeMath(char menuOption, float a, float b) {
+        float results = 0.0f;
+
+        switch (menuOption) {
+            case '+':   // Add
+                results = a + b;
+                break;
+            case '-':   // Subtract
+                results = a - b;
+                break;
+            case '/':   // Divide
+                if (a == 0.0f || b == 0.0f) {
+                    System.out.println("Cannot divide by zero, please try another option");
+                    break;
+                }
+                else {
+                    results = a / b;
+                }
+                break;
+            case '*':   // Multiply
+                results = a * b;
+        }   // End of switch
+        
+        // Print results
+        displayResults(a, b, menuOption, results);
+    }   // End of executeMath
+
+    // Display results
+    private static void displayResults(float a, float b, char menuOption, float results) {
+        System.out.printf("%c %c %c = $.3f", a, menuOption, b, results);
+    }   // End of displayResults
+
 }   // End App
