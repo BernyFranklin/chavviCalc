@@ -156,19 +156,19 @@ public class App {
 
     // Execute some math
     private static void executeMath(char menuOption, float a, float b) {
+        // Local Variables
         float results = 0.0f;
         
-        System.out.println("You have entered executeMath()");
+        // Perform appropriate math for user selection
         switch (menuOption) {
             case '+':   // Add
-                results = (float)(a + b);
+                results = a + b;
                 break;
             case '-':   // Subtract
                 results = a - b;
                 break;
             case '/':   // Divide
                 if (a == 0.0f || b == 0.0f) {
-                    System.out.println("Cannot divide by zero, please try another option");
                     break;
                 }
                 else {
@@ -179,13 +179,19 @@ public class App {
                 results = a * b;
         }   // End of switch
         
+        // If trying to divide by zero do nothing, else display results
+        if (menuOption == '/' && (a == 0.0f || b == 0.0f)) {
+            System.out.printf("\n\nCannot divide by zero, please try another option\n\n");
+        }
+        else {
         // Print results
         displayResults(a, b, results, menuOption);
+        }
     }   // End of executeMath
 
     // Display results
     private static void displayResults(float a, float b, float results, char menuOption) {
-        System.out.printf("%.3f %c %.3f = %.3f", a, menuOption, b, results);
+        System.out.printf("\n%.3f %c %.3f = %.3f\n\n", a, menuOption, b, results);
     }   // End of displayResults
 
 }   // End App
