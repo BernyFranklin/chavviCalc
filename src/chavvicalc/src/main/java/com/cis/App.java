@@ -25,11 +25,23 @@ public class App {
         while (!quit) {
             // Local variables
             char menuOption = ' ';  // Value for menu option
+            boolean isValid = false;   //Flag for valid options
             // Display the menu
             displayMenu(a, b);
             // Prompt for userSelection
-            menuOption = getUserInput();
-
+            while (!isValid) {
+                menuOption = getUserInput();
+                // Check if valid selecion
+                isValid = validInputCheck(menuOption);
+            }
+            // Pass to different operations
+            // A
+            // B
+            // Add
+            // Subtract
+            // Divide
+            // Multiply
+            // Clear
             // Control Statement for menuOption
             // Quit
             if (menuOption == 'q') {
@@ -78,4 +90,15 @@ public class App {
         // Return char to main
         return input;
     }   // End getUserInput
+
+    // Valid input check
+    private static boolean validInputCheck(char a) {
+        if (a != 'a' && a != 'b' && a != '+' && a != '-' && a != '/' && a != '*' && a != 'c' && a != 'q') {
+            System.out.printf("\nInvalid selection, please try again.\n");
+            return false;
+        }
+        else {
+            return true;
+        }
+    }   // End of validInputCheck
 }   // End App
