@@ -6,7 +6,7 @@ package com.cis;
  *  CIS-059 Object Oriented Programming
  *  ChavviCalc  
  *  Start:      19 August 2022
- *  Finish: 
+ *  Finish:     20 August 2022
  */
 
  // Imports
@@ -24,21 +24,25 @@ public class App {
         // Create Scanner
         Scanner readInput = new Scanner(System.in);
 
-
+        // Loop menu until 'q' selected
         while (!quit) {
             // Local variables
             char menuOption = ' ';  // Value for menu option
             boolean isValid = false;   //Flag for valid options
+
             // Display the menu
             displayMenu(a, b);
+
             // Prompt for userSelection
+            // Loops until a valid char is selected
             while (!isValid) {
+                // Prompts user for input and stores into menuOption
                 menuOption = getUserInput(readInput);
-                // Check if valid selecion
+                // Check if valid selecion and sets flag
                 isValid = validInputCheck(menuOption);
-            }
+            }   // End of while
             
-            // Pass to different operations
+            // Passes menuOption to different operations
             switch (menuOption) {
                 case 'a':   // Set A
                     a = setAorB(readInput, menuOption);
@@ -65,19 +69,21 @@ public class App {
                 case 'q':
                     quit = true;
                     break;
-            }
-            // Add
-            // Subtract
-            // Divide
-            // Multiply
-            // Clear
+
+            }   // End of switch
+            
         }   // End of while
 
+        // Close the Scanner object
         readInput.close();
+
     }   // End main
 
-    // Print the menu
-    private static void displayMenu(double a, double b) {
+    /*
+     *  displayMenu() is passed a and b to display the menu and current values 
+     *  of a and b.
+     */
+    private static void displayMenu(float a, float b) {
         // Print menu
         System.out.println("----------------------------------------");
         System.out.println("Chavvi Calc");
@@ -95,12 +101,16 @@ public class App {
         System.out.println("----------------------------------------");
     }   // End displayMenu
 
-    // Get user input
+    /*
+     *  getUserInput() is passed the Scanner object to collect user input.
+     *  this method returns a char
+     */
     private static char getUserInput(Scanner readInput) {
         
         // Create local variables
-        String userSelection = "";
-        char input = ' ';
+        String userSelection = "";   // Used for initial input
+        char input = ' ';            // Used for final return
+
         // Prompt for user input
         System.out.print("Please enter a selection: ");
 
@@ -108,22 +118,30 @@ public class App {
         userSelection = readInput.next();
         // Convert to lower
         userSelection = userSelection.toLowerCase();
-        // Grab character
+        // Grab character at index 0
         input = userSelection.charAt(0);
-
         // Return char to main
         return input;
+
     }   // End getUserInput
 
-    // Valid input check
+    /*
+     *  validInputCheck() is passed a char from main and is compared to the valid list of characters
+     *  this method returns a bool
+     */
     private static boolean validInputCheck(char a) {
-        if (a != 'a' && a != 'b' && a != '+' && a != '-' && a != '/' && a != '*' && a != 'c' && a != 'q') {
-            System.out.printf("\nInvalid selection, please try again.\n");
-            return false;
+        // Local Variables
+        char[] validChars = {'a', 'b', '+', '-', '/', '*', 'c', 'q'};
+        // Iterate through validChars until we have a match
+        for (int i = 0; i < validChars.length; i++) {
+            // If found return true
+            if (a == validChars[i]) {return true;}
         }
-        else {
-            return true;
-        }
+
+        // No match, prompt user and return false
+        System.out.printf("\nInvalid selection, please try again.\n");
+        return false;
+
     }   // End of validInputCheck
 
     // Set A or B
